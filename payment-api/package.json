@@ -5,6 +5,7 @@
   "description": "CEKI BACKEND",
   "keywords": [],
   "dependencies": {
+    "axios": "^0.16.2",
     "bluebird": "^3.4.6",
     "dotenv": "^4.0.0",
     "ejs": "2.3.4",
@@ -29,6 +30,7 @@
     "sails": "~0.12.4",
     "sails-disk": "~0.10.9",
     "sails-mongo": "^0.12.1",
+    "sha256": "^0.2.0",
     "uuid": "^2.0.2"
   },
   "devDependencies": {
