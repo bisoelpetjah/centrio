@@ -2,7 +2,7 @@ var Sails = require('sails')
 
 Sails.lift({
   environment: 'test',
-  port: 1337,
+  port: 1330,
   models: {
     connection: 'test',
     migrate: 'drop'

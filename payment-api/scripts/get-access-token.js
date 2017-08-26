@@ -14,7 +14,12 @@ Sails.lift({
 })
 
 const main = (sails) => {
+
+  console.log()
   console.log(sails.config.bca)
-  BCAService.getAccessToken().then(console.log)
+
+  BCAService
+    .getAccessToken()
+    .then(console.log)
 }
 

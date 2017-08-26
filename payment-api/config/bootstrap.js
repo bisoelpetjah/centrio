@@ -21,6 +21,8 @@ module.exports.bootstrap = function(cb) {
   global.global_request = require('request').defaults({ encoding: null })
   global.crypto = require('crypto')
   global.sha256 = require('sha256')
+  global.axios = require('axios')
+  global.querystring = require('querystring')
 
   cb();
 };
