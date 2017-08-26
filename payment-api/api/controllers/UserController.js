@@ -194,6 +194,31 @@ module.exports = {
       })
   },
 
+  getUserInfo: function(req, res) {
+    const accessToken = req.headers['access-token']
+    const accountNumber = sails.config.bca.BUYER_ACCOUNT_ID
+    const corporateId = sails.config.bca.CORPORATE_ID
+    const userId = req.params.id
+    return User
+      .findOne({id:userId})
+      .then((user) => {
+        return BCAService
+          .getBalanceInfo(accountNumber, corporateId, accessToken)
+          .then((info) => {
+            if (info.ErrorCode) {
+              res.status(401).json({'result': info})
+            }
+            const payload = user
+            payload.balance = info.AccountDetailDataSuccess.AvailableBalance
+            res.json(user)
+          })
+      })
+      .catch((e) => {
+        console.log(e.message)
+        res.json(e.message)
+      })
+  },
+
 
 }
 
