@@ -58,7 +58,7 @@ const getAccessToken = () => {
   return axios
     .post(`${BASE_URL}/api/oauth/token`, params, headers)
     .then(resp => resp.data.access_token)
-    .catch(console.log)
+    .catch(resp => resp.data)
 }
 
 const getBalanceInfo = (accountNumber, corporateId, accessToken) => {
@@ -76,7 +76,7 @@ const getBalanceInfo = (accountNumber, corporateId, accessToken) => {
   return axios
     .get(URL, params)
     .then(resp => resp.data)
-    .catch(console.log)
+    .catch(resp => resp.data)
 }
 
 module.exports = {
