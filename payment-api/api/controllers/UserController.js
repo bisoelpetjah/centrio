@@ -225,7 +225,6 @@ module.exports = {
     const amount = req.body['amount']
     const buyerId = sails.config.bca.BUYER_ACCOUNT_ID
     const merchantId = sails.config.bca.MERCHANT_ACCOUNT_ID
-    const corporateId = sails.config.bca.CORPORATE_ID
 
     return BCAService
       .transact(buyerId, merchantId, amount, accessToken)

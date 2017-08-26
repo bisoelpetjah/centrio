@@ -12,11 +12,18 @@ const getUserSharedsecret = (userId) => {
 module.exports = {
 
   create: function(req, res) {
-    item_uuid = req.body['item']
-    customer_id = req.body['customer']
-    amount = req.body['amount']
+    const accessToken = req.headers['access-token']
+    const item_uuid = req.body['item']
+    const customer_id = req.body['customer']
+    const amount = req.body['amount']
+    const buyerId = sails.config.bca.BUYER_ACCOUNT_ID
+    const merchantId = sails.config.bca.MERCHANT_ACCOUNT_ID
     return Promise
       .resolve()
+      .then(function () {
+        return BCAService
+          .transact(buyerId, merchantId, amount, accessToken)
+      })
       .then(function () {
         return Item
           .findOne({item_id: item_uuid})
