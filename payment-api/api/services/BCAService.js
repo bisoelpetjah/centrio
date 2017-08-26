@@ -90,11 +90,10 @@ const transact = (source, beneficiary, amount, accessToken) => {
     "Amount" : `${amount}.00`,
     "BeneficiaryAccountNumber" : `${beneficiary}`
   }
-  const params = querystring.stringify(payload)
   const HTTPMethod = 'POST'
   const relativeUrl = `/banking/corporates/transfers`
   const URL = `${BASE_URL}${relativeUrl}`
-  const XBCAPayload = generateXBCA(HTTPMethod, relativeUrl, accessToken, params)
+  const XBCAPayload = generateXBCA(HTTPMethod, relativeUrl, accessToken, "")
   const innerHeaders = Object.assign({},
     {
       'Authorization': `Bearer ${accessToken}`,
@@ -104,7 +103,6 @@ const transact = (source, beneficiary, amount, accessToken) => {
   const headers = {'headers': innerHeaders}
   console.log('headers', headers)
   console.log('payload', payload)
-  console.log('params', params)
   return axios
     .post(URL, payload, headers)
     .then(resp => resp.data)
