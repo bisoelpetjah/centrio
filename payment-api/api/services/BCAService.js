@@ -55,6 +55,7 @@ const getAccessToken = () => {
       'Authorization': `Basic ${OAUTH_CREDENTIAL}`
     }
   }
+  console.log(sails.config.bca)
   console.log(JSON.stringify(headers, null, 2))
   return axios
     .post(`${BASE_URL}/api/oauth/token`, params, headers)
@@ -72,6 +73,7 @@ const getBalanceInfo = (accountNumber, corporateId, accessToken) => {
       'Content-Type': 'application/json',
       'Origin': 'centr.io',
     }, XBCAPayload)
+  console.log(sails.config.bca)
   console.log(URL)
   console.log(JSON.stringify(headers, null, 2))
   const params = {'headers': headers}
