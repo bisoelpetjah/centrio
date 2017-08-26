@@ -21,22 +21,21 @@ module.exports = {
     return Promise
       .resolve()
       .then(function () {
-        return BCAService
-          .transact(buyerId, merchantId, amount, accessToken)
-      })
-      .then(function () {
         return Item
           .findOne({item_id: item_uuid})
       })
       .then(function (item) {
-        return Transaction
-          .create({
+        let proms = [
+          BCAService.transact(buyerId, merchantId, amount * item.price, accessToken),
+          Transaction.create({
             customer: customer_id,
             item: item.id,
             amount: amount
           })
+        ] 
+        return Promise.all(proms)
       })
-      .then(function (transaction) {
+      .then(function (proms) {
         res.json({})
       })
       .catch((e) => {
