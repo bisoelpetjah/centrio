@@ -25,7 +25,6 @@ class MainActivity: AppCompatActivity() {
     private var toolbar: Toolbar? = null
     private var recyclerView: RecyclerView? = null
     private var buttonScan: FloatingActionButton? = null
-    private var buttonGenerate: FloatingActionButton? = null
 
     private val homeAdapter = HomeAdapter()
 
@@ -36,12 +35,10 @@ class MainActivity: AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar) as Toolbar
         recyclerView = findViewById(R.id.recycler) as RecyclerView
         buttonScan = findViewById(R.id.buttonScan) as FloatingActionButton
-        buttonGenerate = findViewById(R.id.buttonGenerate) as FloatingActionButton
 
         setSupportActionBar(toolbar)
 
         buttonScan?.setOnClickListener { startActivity(Intent(this, ScanActivity::class.java)) }
-        buttonGenerate?.setOnClickListener { startActivity(Intent(this, GenerateActivity::class.java)) }
 
         recyclerView?.adapter = homeAdapter
         recyclerView?.layoutManager = LinearLayoutManager(this)
