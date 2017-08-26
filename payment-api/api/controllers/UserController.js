@@ -164,7 +164,11 @@ module.exports = {
     return BCAService
       .getBalanceInfo(accountNumber, corporateId, accessToken)
       .then((payloads) => {
-        return res.json(payloads)
+        console.log('payloads', payloads)
+        let result = {
+          'result': payloads
+        }
+        return res.json(result)
       })
       .catch((e) => {
         return res.json(e.message)
@@ -176,7 +180,10 @@ module.exports = {
       .getAccessToken()
       .then((payloads) => {
         console.log('payloads', payloads)
-        return res.json(payloads)
+        let result = {
+          'result': payloads
+        }
+        return res.json(result)
       })
       .catch((e) => {
         return res.json(e.message)

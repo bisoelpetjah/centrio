@@ -59,7 +59,10 @@ const getAccessToken = () => {
   console.log(JSON.stringify(headers, null, 2))
   return axios
     .post(`${BASE_URL}/api/oauth/token`, params, headers)
-    .then(resp => resp.data.access_token)
+    .then(resp => {
+      console.log(resp.data)
+      return resp.data.access_token
+    })
     .catch(console.log)
 }
 
