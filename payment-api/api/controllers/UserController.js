@@ -175,6 +175,7 @@ module.exports = {
     return BCAService
       .getAccessToken()
       .then((payloads) => {
+        console.log('payloads', payloads)
         return res.json(payloads)
       })
       .catch((e) => {

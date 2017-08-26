@@ -81,7 +81,7 @@ const getBalanceInfo = (accountNumber, corporateId, accessToken) => {
   return axios
     .get(URL, params)
     .then(resp => {
-      console.log(resp.data)
+      console.log('resp.data', resp.data)
       return resp.data
     })
     .catch(console.log)
