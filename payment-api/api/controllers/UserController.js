@@ -208,8 +208,9 @@ module.exports = {
             if (info.ErrorCode) {
               res.status(401).json({'result': info})
             } else {
-              const payload = user
-              payload.balance = info.AccountDetailDataSuccess.AvailableBalance
+              console.log(info)
+              let payload = user
+              // payload.balance = info.AccountDetailDataSuccess.AvailableBalance
               res.json(payload)
             }
           })
