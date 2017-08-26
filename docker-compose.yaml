@@ -28,6 +28,4 @@ services:
       - API_SECRET=60766ed9-2480-4f47-ab3f-68a5a719b54d
     ports:
       - "1337:1337"
-    networks:
-      - centrio_default
-      - bridge
+    network_mode: bridge
