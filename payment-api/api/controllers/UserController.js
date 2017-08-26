@@ -156,5 +156,40 @@ module.exports = {
       })
       .catch(console.log)
   },
+
+  getBalance: function(req, res) {
+    const accessToken = req.headers['access-token']
+    const accountNumber = req.params['accountId']
+    const corporateId = 'finhacks01'
+    return BCAService
+      .getBalanceInfo(accountNumber, corporateId, accessToken)
+      .then((payloads) => {
+        console.log('payloads', payloads)
+        let result = {
+          'result': payloads
+        }
+        return res.json(result)
+      })
+      .catch((e) => {
+        return res.json(e.message)
+      })
+  },
+
+  getAccessToken: function(req, res) {
+    return BCAService
+      .getAccessToken()
+      .then((payloads) => {
+        console.log('payloads', payloads)
+        let result = {
+          'result': payloads
+        }
+        return res.json(result)
+      })
+      .catch((e) => {
+        return res.json(e.message)
+      })
+  },
+
+
 }
 
