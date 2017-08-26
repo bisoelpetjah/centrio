@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Centrio</string>
+
+    <string name="button_keypad_1">1</string>
+    <string name="button_keypad_2">2</string>
+    <string name="button_keypad_3">3</string>
+    <string name="button_keypad_4">4</string>
+    <string name="button_keypad_5">5</string>
+    <string name="button_keypad_6">6</string>
+    <string name="button_keypad_7">7</string>
+    <string name="button_keypad_8">8</string>
+    <string name="button_keypad_9">9</string>
+    <string name="button_keypad_0">0</string>
+
+    <string name="label_transaction_history">Riwayat Transaksi</string>
+
+    <string name="title_scan">Scan QR Code</string>
+
+    <string name="title_buy">Lakukan Pembayaran</string>
+    <string name="action_share">Bagikan</string>
+    <string name="label_amount">Jumlah</string>
+    <string name="label_merchant">Penyedia:</string>
+    <string name="button_amount_increase">+</string>
+    <string name="button_amount_decrease">-</string>
+    <string name="label_price">Total harga</string>
+    <string name="button_buy">Beli</string>
+    <string name="progress_buying">Pembayaran sedang diproses</string>
+    <string name="buy_successful">Transaksi berhasil</string>
+
+    <string name="title_generate">Pembayaran Offline</string>
+    <string name="button_submit_token">Bayar</string>
+    <string name="instruction_token">Silakan masukkan 6 digit angka dari merchant.</string>
+    
+    <string name="instruction_qr">Silakan tunjukkan QR code kepada merchant untuk menyelesaikan transaksi</string>
+    <string name="instruction_response">atau tunjukan jawaban berikut kepada merchant.</string>
+</resources>
