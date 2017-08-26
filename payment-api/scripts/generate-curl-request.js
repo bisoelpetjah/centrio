@@ -20,9 +20,10 @@ const main = (sails) => {
   let accessToken = "EDFv06b3MI5c0WLvy2UrskCIqtMsdg517l2xn37pym352MBBOkmcGY"
   let requestBody = ""
 
-  let curlReq = BCAService.generateCURLRequest(HTTPMethod, relativeUrl, accessToken, requestBody)
   console.log()
   console.log(sails.config.bca)
+  
+  let curlReq = BCAService.generateCURLRequest(HTTPMethod, relativeUrl, accessToken, requestBody)
   console.log()
   console.log(curlReq)
 }

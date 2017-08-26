@@ -47,7 +47,6 @@ module.exports.routes = {
   '/user/:id/transaction': 'UserController.transaction',
   '/user/:id/transaction_page': 'UserController.transaction_page',
   '/transaction/create': 'TransactionController.create',
-  '/transaction/offline': 'TransactionController.createOffline',
 
 
   /***************************************************************************
