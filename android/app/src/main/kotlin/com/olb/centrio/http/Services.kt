@@ -11,6 +11,9 @@ import retrofit2.http.*
  */
 interface Services {
 
+    @GET("login")
+    fun getAccessToken(): Call<Token>
+
     @GET("user/{id}")
     fun getUser(@Path("id") id: String?): Call<User>
 
