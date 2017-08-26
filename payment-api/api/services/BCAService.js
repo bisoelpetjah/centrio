@@ -80,7 +80,10 @@ const getBalanceInfo = (accountNumber, corporateId, accessToken) => {
   const params = {'headers': headers}
   return axios
     .get(URL, params)
-    .then(resp => resp.data)
+    .then(resp => {
+      console.log(resp.data)
+      return resp.data
+    })
     .catch(console.log)
 }
 
