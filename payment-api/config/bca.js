@@ -13,5 +13,6 @@ module.exports.bca = {
   API_SECRET: process.env.API_SECRET,
   CORPORATE_ID: process.env.CORPORATE_ID,
   BUYER_ACCOUNT_ID: process.env.BUYER_ACCOUNT_ID,
+  MERCHANT_ACCOUNT_ID: process.env.MERCHANT_ACCOUNT_ID,
 
 };
