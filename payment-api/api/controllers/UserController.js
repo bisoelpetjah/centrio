@@ -161,24 +161,24 @@ module.exports = {
     const accessToken = req.headers['access-token']
     const accountNumber = req.params['accountId']
     const corporateId = 'finhacks01'
-    BCAService
+    return BCAService
       .getBalanceInfo(accountNumber, corporateId, accessToken)
       .then((payloads) => {
-        res.json(payloads)
+        return res.json(payloads)
       })
       .catch((e) => {
-        res.json(e.message)
+        return res.json(e.message)
       })
   },
 
   getAccessToken: function(req, res) {
-    BCAService
+    return BCAService
       .getAccessToken()
       .then((payloads) => {
-        res.json(payloads)
+        return res.json(payloads)
       })
       .catch((e) => {
-        res.json(e.message)
+        return res.json(e.message)
       })
   },
 
