@@ -103,10 +103,10 @@ const transact = (source, beneficiary, amount, accessToken) => {
     }, XBCAPayload)
   const headers = {'headers': innerHeaders}
   console.log('headers', headers)
-  console.log('params', params)
   console.log('payload', payload)
+  console.log('params', params)
   return axios
-    .post(URL, params, headers)
+    .post(URL, payload, headers)
     .then(resp => resp.data)
     .catch(resp => resp.response.data)
 }
