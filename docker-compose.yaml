@@ -7,7 +7,6 @@ services:
     restart: on-failure
     ports:
       - "27017:27017"
-    network_mode: bridge
   payment-api:
     build: payment-api
     container_name: centrio_payment_api
@@ -29,4 +28,3 @@ services:
       - API_SECRET=60766ed9-2480-4f47-ab3f-68a5a719b54d
     ports:
       - "1337:1337"
-    network_mode: bridge
