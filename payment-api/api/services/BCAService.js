@@ -94,7 +94,7 @@ const transact = (source, beneficiary, amount, accessToken) => {
   const HTTPMethod = 'POST'
   const relativeUrl = `/banking/corporates/transfers`
   const URL = `${BASE_URL}${relativeUrl}`
-  const XBCAPayload = generateXBCA(HTTPMethod, relativeUrl, accessToken, "")
+  const XBCAPayload = generateXBCA(HTTPMethod, relativeUrl, accessToken, params)
   const innerHeaders = Object.assign({},
     {
       'Authorization': `Bearer ${accessToken}`,
