@@ -23,7 +23,10 @@ module.exports = {
             res.view('showcase', payload)
           })
       })
-      .catch(console.log)
+      .catch((e) => {
+        console.log(e.message)
+        res.json(e.message)
+      })
   },
 
   showcaseApi: function(req, res) {
@@ -40,7 +43,10 @@ module.exports = {
             res.json(payload)
           })
       })
-      .catch(console.log)
+      .catch((e) => {
+        console.log(e.message)
+        res.json(e.message)
+      })
   },
 
   transaction: function(req, res) {
@@ -168,6 +174,7 @@ module.exports = {
         res.json(result)
       })
       .catch((e) => {
+        console.log(e.message)
         res.json(e.message)
       })
   },
@@ -180,6 +187,7 @@ module.exports = {
         res.json(result)
       })
       .catch((e) => {
+        console.log(e.message)
         res.json(e.message)
       })
   },
