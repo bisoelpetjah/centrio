@@ -15,16 +15,14 @@ Sails.lift({
 
 const main = (sails) => {
 
-  let HTTPMethod = "GET"
-  let relativeUrl = "/banking/v4/corporates/finhacks01/accounts/8220000011"
+  let accountNumber = "8220000011"
   let accessToken = "hdCKsAfFXZskdCTiN7KcicdcLGhFhZwCbrDpmFLHnqfMWrUBkxeewL"
-  let requestBody = ""
 
   console.log()
   console.log(sails.config.bca)
   
-  let curlReq = BCAService.generateCURLRequest(HTTPMethod, relativeUrl, accessToken, requestBody)
-  console.log()
-  console.log(curlReq)
+  BCAService
+    .getBalanceInfo(accountNumber, accessToken)
+    .then(console.log)
 }
 
