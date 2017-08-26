@@ -55,6 +55,7 @@ const getAccessToken = () => {
       'Authorization': `Basic ${OAUTH_CREDENTIAL}`
     }
   }
+  console.log(JSON.stringify(headers, null, 2))
   return axios
     .post(`${BASE_URL}/api/oauth/token`, params, headers)
     .then(resp => resp.data.access_token)
@@ -71,6 +72,8 @@ const getBalanceInfo = (accountNumber, corporateId, accessToken) => {
       'Content-Type': 'application/json',
       'Origin': 'centr.io',
     }, XBCAPayload)
+  console.log(URL)
+  console.log(JSON.stringify(headers, null, 2))
   const params = {'headers': headers}
   return axios
     .get(URL, params)
