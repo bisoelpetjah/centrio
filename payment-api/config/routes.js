@@ -48,6 +48,10 @@ module.exports.routes = {
   '/user/:id/transaction_page': 'UserController.transaction_page',
   '/transaction/create': 'TransactionController.create',
 
+  '/user/:accountId/balance': 'UserController.getBalance',
+
+
+
 
   /***************************************************************************
   *                                                                          *

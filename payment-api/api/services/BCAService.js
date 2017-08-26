@@ -9,7 +9,8 @@ const API_KEY = sails.config.bca.API_KEY
 const API_SECRET = sails.config.bca.API_SECRET
 
 const generateSignature = (HTTPMethod, relativeUrl, accessToken, requestBodySHA256, timestamp) => {
-  let stringToSign = HTTPMethod + ":" + relativeUrl + ":" + accessToken + ":" + requestBodySHA256 + ":" + timestamp
+  let stringToSign = HTTPMethod.toUpperCase() + ":" + relativeUrl.trim() + ":" + accessToken + ":" + requestBodySHA256 + ":" + timestamp
+  // console.log(stringToSign)
   let signature = crypto.createHmac('sha256', API_SECRET).update(stringToSign).digest('hex')
   return signature
 }
@@ -29,9 +30,10 @@ const generateXBCA = (HTTPMethod, relativeUrl, accessToken, requestBody) => {
 }
 
 const generateCURLRequest = (HTTPMethod, relativeUrl, accessToken, requestBody) => {
-  let XBCAPayload = generateXBCA(HTTPMethod, relativeUrl, accessToken, requestBody)
+  let relativeUrl_ = relativeUrl.trim()
+  let XBCAPayload = generateXBCA(HTTPMethod, relativeUrl_, accessToken, requestBody)
   let reqs = [
-    'curl "https://api.finhacks.id'+relativeUrl+'" ',
+    'curl "https://api.finhacks.id'+relativeUrl_+'" ',
     '-H "Authorization: Bearer '+accessToken+'" ',
     '-H "Content-Type: application/json" ',
     '-H "Origin: centr.io" ',
@@ -58,6 +60,23 @@ const getAccessToken = () => {
     .then(resp => resp.data.access_token)
 }
 
+const getBalanceInfo = (accountNumber, corporateId, accessToken) => {
+  const HTTPMethod = 'GET'
+  const relativeUrl = `/banking/v4/corporates/${corporateId}/accounts/${accountNumber}`
+  const URL = `${BASE_URL}${relativeUrl}`
+  const XBCAPayload = generateXBCA(HTTPMethod, relativeUrl, accessToken, "")
+  const headers = Object.assign({},
+    {
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+      'Origin': 'centr.io',
+    }, XBCAPayload)
+  const params = {'headers': headers}
+  return axios
+    .get(URL, params)
+    .then(resp => resp.data)
+}
+
 module.exports = {
 
   generateSignature,
@@ -67,6 +86,8 @@ module.exports = {
   generateCURLRequest,
 
   getAccessToken,
+
+  getBalanceInfo,
 
 }
 
