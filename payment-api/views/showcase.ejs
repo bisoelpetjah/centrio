@@ -1,28 +1,27 @@
 <!-- Latest compiled and minified CSS -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-<div class='container-fluid'>
-  <br />
-  <br />
+<div style="width: 100%; background-color: #f0f0f0;">
   <br />
   <br />
 
-  <div class='row'>
-    <div style="width: 100%; display: table;">
-        <div class="col-md-3" style="display: table-cell; margin: 25px; text-align: center; padding: 10px; background: #f0f0f0; border-radius: 5px; font-size: 14px; font-weight: bold;">
+  <div style="font-family: 'Roboto', sans-serif;">
+    <div style="width: 100%; display: table; margin-bottom: 18px; padding-left: 22px;">
+        <div style="display: table-cell; margin: 25px; padding: 10px; border-radius: 5px; font-size: 24px; font-weight: bold;">
             Produk-produk yang disediakan oleh <%- user.name %>
         </div>
-        <a class="col-md-2 btn btn-primary" href="/item/create_page" style="display: table-cell; margin-top: 25px; text-align: center; padding: 10px; border-radius: 5px; font-size: 14px; font-weight: bold;">
-                Tambah Produk
+        <a class="btn btn-primary" href="/item/create_page" style="display: table-cell; float: right; margin-top: 25px; margin-right:33px; text-align: center; padding: 10px; border-radius: 5px; font-size: 14px; font-weight: bold;">
+            Tambah
         </a>
     </div>
-    <div class="col-md-12">
+    <div style="width: 100%; padding-left: 22px;">
       <% items.forEach(function(el, index) { %>
-        <div class='col-md-3' style="text-align: center; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; background: #f0f0f0; border-radius: 5px; margin-left: 10px; margin-right: 10px; margin-bottom: 30px;">
+        <div style="display: inline-block; vertical-align: top; width: 23%; text-align: center; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; background: #f0f0f0; border-radius: 5px; margin-left: 10px; margin-right: 10px; margin-bottom: 30px; background-color: #fff; border-bottom: 0 none; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);">
           <a href="/item/<%- el.id %>/view">
-            <img src="<%- el.image %>" alt="profile" class="img-thumbnail">
+            <img style="height: 450px; max-width: 100%; object-fit: contain;" src="<%- el.image %>" alt="profile">
           </a>
-          <div style="background: white; width: 100%; text-align: center; padding-top: 5px; padding-left: 10px; padding-right: 10px; padding-bottom: 1px; margin-top: 15px; border-radius: 5px;">
+          <div style="background-color: #f0f0f0; width: 100%; text-align: center; padding-top: 5px; padding-left: 10px; padding-right: 10px; padding-bottom: 1px; margin-top: 15px; border-radius: 5px;">
               <div style="width: 100%; text-align: left; font-size: 20px; font-weight: bold;">
                   <p><%- el.name %></p>
               </div>
