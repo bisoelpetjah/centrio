@@ -16,13 +16,14 @@ Sails.lift({
 const main = (sails) => {
 
   let accountNumber = "8220000011"
+  let corporateId = "finhacks01"
   let accessToken = "hdCKsAfFXZskdCTiN7KcicdcLGhFhZwCbrDpmFLHnqfMWrUBkxeewL"
 
   console.log()
   console.log(sails.config.bca)
   
   BCAService
-    .getBalanceInfo(accountNumber, accessToken)
+    .getBalanceInfo(accountNumber, corporateId, accessToken)
     .then(console.log)
 }
 

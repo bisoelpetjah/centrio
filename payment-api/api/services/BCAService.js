@@ -60,9 +60,9 @@ const getAccessToken = () => {
     .then(resp => resp.data.access_token)
 }
 
-const getBalanceInfo = (accountNumber, accessToken) => {
+const getBalanceInfo = (accountNumber, corporateId, accessToken) => {
   const HTTPMethod = 'GET'
-  const relativeUrl = `/banking/v4/corporates/finhacks01/accounts/${accountNumber}`
+  const relativeUrl = `/banking/v4/corporates/${corporateId}/accounts/${accountNumber}`
   const URL = `${BASE_URL}${relativeUrl}`
   const XBCAPayload = generateXBCA(HTTPMethod, relativeUrl, accessToken, "")
   const headers = Object.assign({},
