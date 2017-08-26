@@ -170,8 +170,11 @@ module.exports = {
     BCAService
       .getBalanceInfo(accountNumber, corporateId, accessToken)
       .then((payloads) => {
-        let result = {'result': payloads}
-        res.json(result)
+        if (!payloads.ErrorCode) {
+          res.json({'result': payloads})
+        } else {
+          res.status(401).json({'result': payloads})
+        }
       })
       .catch((e) => {
         console.log(e.message)
@@ -183,8 +186,7 @@ module.exports = {
     BCAService
       .getAccessToken()
       .then((payloads) => {
-        let result = {'result': payloads}
-        res.json(result)
+        res.json({'result': payloads})
       })
       .catch((e) => {
         console.log(e.message)
