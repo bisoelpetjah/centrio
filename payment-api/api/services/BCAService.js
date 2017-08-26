@@ -55,15 +55,10 @@ const getAccessToken = () => {
       'Authorization': `Basic ${OAUTH_CREDENTIAL}`
     }
   }
-  console.log(sails.config.bca)
-  console.log(JSON.stringify(headers, null, 2))
   return axios
     .post(`${BASE_URL}/api/oauth/token`, params, headers)
-    .then(resp => {
-      console.log(resp.data)
-      return resp.data.access_token
-    })
-    .catch(console.log)
+    .then(resp => resp.data.access_token)
+    .catch(resp => resp.response.data)
 }
 
 const getBalanceInfo = (accountNumber, corporateId, accessToken) => {
@@ -77,17 +72,11 @@ const getBalanceInfo = (accountNumber, corporateId, accessToken) => {
       'Content-Type': 'application/json',
       'Origin': 'centr.io',
     }, XBCAPayload)
-  console.log(sails.config.bca)
-  console.log(URL)
-  console.log(JSON.stringify(headers, null, 2))
   const params = {'headers': headers}
   return axios
     .get(URL, params)
-    .then(resp => {
-      console.log('resp.data', resp.data)
-      return resp.data
-    })
-    .catch(console.log)
+    .then(resp => resp.data)
+    .catch(resp => resp.response.data)
 }
 
 module.exports = {

@@ -40,7 +40,7 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js",
+    "start": "node app.js --prod",
     "test": "mocha tests/bootstrap.test.js tests/**/*.js --recursive --no-timeouts"
   },
   "main": "app.js",

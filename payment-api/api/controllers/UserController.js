@@ -23,7 +23,10 @@ module.exports = {
             res.view('showcase', payload)
           })
       })
-      .catch(console.log)
+      .catch((e) => {
+        console.log(e.message)
+        res.json(e.message)
+      })
   },
 
   showcaseApi: function(req, res) {
@@ -40,7 +43,10 @@ module.exports = {
             res.json(payload)
           })
       })
-      .catch(console.log)
+      .catch((e) => {
+        console.log(e.message)
+        res.json(e.message)
+      })
   },
 
   transaction: function(req, res) {
@@ -160,33 +166,57 @@ module.exports = {
   getBalance: function(req, res) {
     const accessToken = req.headers['access-token']
     const accountNumber = req.params['accountId']
-    const corporateId = 'finhacks01'
-    return BCAService
+    const corporateId = sails.config.bca.CORPORATE_ID
+    BCAService
       .getBalanceInfo(accountNumber, corporateId, accessToken)
       .then((payloads) => {
-        console.log('payloads', payloads)
-        let result = {
-          'result': payloads
+        if (!payloads.ErrorCode) {
+          res.json({'result': payloads})
+        } else {
+          res.status(401).json({'result': payloads})
         }
-        return res.json(result)
       })
       .catch((e) => {
-        return res.json(e.message)
+        console.log(e.message)
+        res.json(e.message)
       })
   },
 
   getAccessToken: function(req, res) {
-    return BCAService
+    BCAService
       .getAccessToken()
       .then((payloads) => {
-        console.log('payloads', payloads)
-        let result = {
-          'result': payloads
-        }
-        return res.json(result)
+        res.json({'result': payloads})
       })
       .catch((e) => {
-        return res.json(e.message)
+        console.log(e.message)
+        res.json(e.message)
+      })
+  },
+
+  getUserInfo: function(req, res) {
+    const accessToken = req.headers['access-token']
+    const accountNumber = sails.config.bca.BUYER_ACCOUNT_ID
+    const corporateId = sails.config.bca.CORPORATE_ID
+    const userId = req.params.id
+    return User
+      .findOne({id:userId})
+      .then((user) => {
+        return BCAService
+          .getBalanceInfo(accountNumber, corporateId, accessToken)
+          .then((info) => {
+            if (info.ErrorCode) {
+              res.status(401).json({'result': info})
+            } else {
+              let payload = user
+              payload.balance = info.AccountDetailDataSuccess[0].AvailableBalance
+              res.json(payload)
+            }
+          })
+      })
+      .catch((e) => {
+        console.log(e.message)
+        res.json(e.message)
       })
   },
 
