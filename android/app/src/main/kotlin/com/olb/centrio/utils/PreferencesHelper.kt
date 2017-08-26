@@ -10,6 +10,7 @@ import android.preference.PreferenceManager
 object PreferencesHelper {
 
     private val PREF_USER_ID = "pref_user_id"
+    private val PREF_ACCESS_TOKEN = "pref_access_token"
 
     private var preferences: SharedPreferences? = null
 
@@ -29,6 +30,20 @@ object PreferencesHelper {
             } else {
                 preferences?.edit()
                         ?.putString(PREF_USER_ID, value)
+                        ?.apply()
+            }
+        }
+
+    var accessToken: String?
+        get() = preferences?.getString(PREF_ACCESS_TOKEN, null)
+        set(value) {
+            if (value == null) {
+                preferences?.edit()
+                        ?.remove(PREF_ACCESS_TOKEN)
+                        ?.apply()
+            } else {
+                preferences?.edit()
+                        ?.putString(PREF_ACCESS_TOKEN, value)
                         ?.apply()
             }
         }
