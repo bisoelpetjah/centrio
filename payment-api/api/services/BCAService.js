@@ -102,8 +102,9 @@ const transact = (source, beneficiary, amount, accessToken) => {
       'Origin': 'centr.io',
     }, XBCAPayload)
   const headers = {'headers': innerHeaders}
-  console.log(headers)
-  console.log(params)
+  console.log('headers', headers)
+  console.log('params', params)
+  console.log('payload', payload)
   return axios
     .post(URL, params, headers)
     .then(resp => resp.data)
