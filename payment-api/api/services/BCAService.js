@@ -84,7 +84,7 @@ const transact = (source, beneficiary, amount, accessToken) => {
     "CorporateID" : sails.config.bca.CORPORATE_ID,
     "SourceAccountNumber" : `${source}`,
     "TransactionID" : Array.apply(null, Array(8)).map(() => Math.floor(Math.random() * 10)).join(''),
-    "TransactionDate" : "2016-08-27",
+    "TransactionDate" : moment().format("YYYY-MM-DD"),
     "ReferenceID" : "12345/PO/2016",
     "CurrencyCode" : "IDR",
     "Amount" : `${amount}.00`,
