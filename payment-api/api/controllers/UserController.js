@@ -210,7 +210,7 @@ module.exports = {
             } else {
               const payload = user
               payload.balance = info.AccountDetailDataSuccess.AvailableBalance
-              res.json(user)
+              res.json(payload)
             }
           })
       })
