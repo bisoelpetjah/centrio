@@ -36,53 +36,5 @@ module.exports = {
         res.json({'error':e.message})
       })
   },
-
-  createOffline: function(req, res) {
-    return Promise
-      .resolve()
-      .then(() => {
-        const tokenUtf8 = req.body['token']
-        const responseBase64 = req.body['signed_token']
-        const merchantId = req.body['merchant_id']
-        const amount = req.body['amount']
-
-        // TODO: check if token is valid [?]
-
-        const response = Buffer.from(responseBase64, 'base64')
-        const signedToken = response.slice(0, 32)
-        const nonce = response.slice(32, 36)
-        const userId = response.slice(36, response.length).toString('utf8')
-
-        // TODO: check if userId is valid
-
-        const secretBase64 = getUserSharedsecret()
-
-        const secret = Buffer.from(secretBase64, 'base64')
-
-        const token = Buffer.from(tokenUtf8, 'utf8')
-        const tokenWithNonce = Buffer.concat([ token, nonce ])
-
-        const computedSignedToken = CryptoService.computeSignedToken(secret, tokenWithNonce)
-
-        if (signedToken.compare(computedSignedToken) === 0) {
-          return { userId, merchantId, amount }
-        } else {
-          return Promise.reject({ message: 'fail when creating offline payment.'})
-        }
-      })
-      .then(({ userId, merchantId, amount }) => {
-        return Transfer.create({
-          sender: userId,
-          receiver: merchantId,
-          amount
-        })
-      })
-      .then(({ amount }) => {
-        res.json({ success: 'success.', amount })
-      })
-      .catch((e) => {
-        res.status(400).json({ 'error': e.message })
-      })
-  }
 }
 

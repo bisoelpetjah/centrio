@@ -19,6 +19,8 @@ module.exports.bootstrap = function(cb) {
   global.uuid = require('uuid')
   global.moment = require('moment')
   global.global_request = require('request').defaults({ encoding: null })
+  global.crypto = require('crypto')
+  global.sha256 = require('sha256')
 
   cb();
 };
