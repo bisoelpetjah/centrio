@@ -49,6 +49,7 @@ module.exports.routes = {
   '/transaction/create': 'TransactionController.create',
 
   '/login': 'UserController.getAccessToken',
+  '/user/buy': 'UserController.buySomething',
   '/user/:accountId/balance': 'UserController.getBalance',
   '/user/:id': 'UserController.getUserInfo',
 

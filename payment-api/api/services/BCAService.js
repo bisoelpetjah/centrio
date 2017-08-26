@@ -79,6 +79,37 @@ const getBalanceInfo = (accountNumber, corporateId, accessToken) => {
     .catch(resp => resp.response.data)
 }
 
+const transact = (source, beneficiary, amount, accessToken) => {
+  const payload = {
+    "CorporateID" : sails.config.bca.CORPORATE_ID,
+    "SourceAccountNumber" : `${source}`,
+    "TransactionID" : Array.apply(null, Array(8)).map(() => Math.floor(Math.random() * 10)).join(''),
+    "TransactionDate" : "2016-08-27",
+    "ReferenceID" : "",
+    "CurrencyCode" : "IDR",
+    "Amount" : `${amount}`,
+    "BeneficiaryAccountNumber" : `${beneficiary}`
+  }
+  const params = querystring.stringify(payload)
+  const HTTPMethod = 'POST'
+  const relativeUrl = `/banking/corporates/transfers`
+  const URL = `${BASE_URL}${relativeUrl}`
+  const XBCAPayload = generateXBCA(HTTPMethod, relativeUrl, accessToken, "")
+  const innerHeaders = Object.assign({},
+    {
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+      'Origin': 'centr.io',
+    }, XBCAPayload)
+  const headers = {'headers': innerHeaders}
+  console.log(headers)
+  console.log(params)
+  return axios
+    .post(URL, params, headers)
+    .then(resp => resp.data)
+    .catch(resp => resp.response.data)
+}
+
 module.exports = {
 
   generateSignature,
@@ -90,6 +121,8 @@ module.exports = {
   getAccessToken,
 
   getBalanceInfo,
+
+  transact,
 
 }
 

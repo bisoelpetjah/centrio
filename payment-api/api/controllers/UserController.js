@@ -220,6 +220,25 @@ module.exports = {
       })
   },
 
+  buySomething: function(req, res) {
+    const accessToken = req.headers['access-token']
+    const amount = '100'
+    const buyerId = sails.config.bca.BUYER_ACCOUNT_ID
+    const merchantId = sails.config.bca.MERCHANT_ACCOUNT_ID
+    const corporateId = sails.config.bca.CORPORATE_ID
+
+    return BCAService
+      .transact(buyerId, merchantId, amount, accessToken)
+      .then((payload) => {
+        console.log('result', payload)
+        return res.json(payload)
+      })
+      .catch((e) => {
+        console.log(e.message)
+        res.json(e.message)
+      })
+  },
+
 
 }
 
