@@ -87,7 +87,7 @@ const transact = (source, beneficiary, amount, accessToken) => {
     "TransactionDate" : "2016-08-27",
     "ReferenceID" : "",
     "CurrencyCode" : "IDR",
-    "Amount" : `${amount}`,
+    "Amount" : `${amount}.0`,
     "BeneficiaryAccountNumber" : `${beneficiary}`
   }
   const params = querystring.stringify(payload)
