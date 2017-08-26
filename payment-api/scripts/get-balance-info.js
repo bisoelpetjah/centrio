@@ -15,9 +15,9 @@ Sails.lift({
 
 const main = (sails) => {
 
-  let accountNumber = "8220000011"
-  let corporateId = "finhacks01"
-  let accessToken = "hdCKsAfFXZskdCTiN7KcicdcLGhFhZwCbrDpmFLHnqfMWrUBkxeewL"
+  let accountNumber = "8220000509"
+  let corporateId = "finhacks30"
+  let accessToken = "wacxBDxBoj6mgUuYPeORwOJNUay40D0hE1kjVYlyWySXLx3YN56INI"
 
   console.log()
   console.log(sails.config.bca)
