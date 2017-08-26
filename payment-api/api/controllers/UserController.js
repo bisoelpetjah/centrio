@@ -207,10 +207,11 @@ module.exports = {
           .then((info) => {
             if (info.ErrorCode) {
               res.status(401).json({'result': info})
+            } else {
+              const payload = user
+              payload.balance = info.AccountDetailDataSuccess.AvailableBalance
+              res.json(user)
             }
-            const payload = user
-            payload.balance = info.AccountDetailDataSuccess.AvailableBalance
-            res.json(user)
           })
       })
       .catch((e) => {
