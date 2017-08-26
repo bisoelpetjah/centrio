@@ -8,11 +8,14 @@ import java.util.*
  */
 object PriceUtils {
 
-    fun formatNumberToPrice(number: Long): String {
-        return NumberFormat.getInstance(Locale("id")).format(number)
+    fun formatNumberToPrice(number: Double): String {
+        val formatter = NumberFormat.getInstance(Locale("id"))
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        return formatter.format(number)
     }
 
-    fun formatNumberToRupiah(number: Long): String {
-        return "Rp${formatNumberToPrice(number)},00"
+    fun formatNumberToRupiah(number: Double): String {
+        return "Rp${formatNumberToPrice(number)}"
     }
 }
