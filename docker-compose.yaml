@@ -2,15 +2,15 @@ version: '2'
 services:
   database:
     build: database
-    container_name: jenio_database
-    hostname: jenio_database
+    container_name: centrio_database
+    hostname: centrio_database
     restart: on-failure
     ports:
       - "27017:27017"
   payment-api:
     build: payment-api
-    container_name: jenio_payment_api
-    hostname: jenio_payment_api
+    container_name: centrio_payment_api
+    hostname: centrio_payment_api
     restart: on-failure
     links:
       - database
@@ -18,7 +18,7 @@ services:
       - database
     environment:
       - PORT=1337
-      - MONGO_HOST=jenio_database
+      - MONGO_HOST=centrio_database
       - MONGO_PORT=27017
       - MONGO_DB=admin
     ports:

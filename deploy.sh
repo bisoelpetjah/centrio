@@ -12,4 +12,4 @@ sleep 1
 echo "."
 sleep 1
 echo "."
-docker exec -it jenio_database mongorestore .
+docker exec -it centrio_database mongorestore .
