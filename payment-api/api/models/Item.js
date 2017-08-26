@@ -90,7 +90,7 @@ module.exports = {
         "COLOR_IBG": "028dce"
       },
       "LOGO": {
-        "L_NAME": "http://i.imgur.com/aL0DRs7.png",
+        "L_NAME": "http://i.imgur.com/ex6nkGg.png",
         "EXCAVATE": true
       },
       "E": "H",
